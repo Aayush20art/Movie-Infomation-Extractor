@@ -145,32 +145,97 @@ textarea:focus {
 }
 
 /* ── Button ── */
+/* ── Button Container ── */
 .stButton {
     display: flex !important;
     justify-content: center !important;
+    margin-top: 1.5rem !important;
 }
+
+/* ── Main Button ── */
 .stButton > button {
-    width: 60% !important;
-    background: rgba(168, 85, 247, 0.15) !important;
-    border: 1px solid rgba(168, 85, 247, 0.6) !important;
-    border-radius: 8px !important;
-    color: #C084FC !important;
-    font-family: 'Orbitron', monospace !important;
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 3px !important;
-    text-transform: uppercase !important;
-    padding: 0.9rem !important;
-    transition: all 0.25s ease !important;
-}
-.stButton > button:hover {
-    background: rgba(168, 85, 247, 0.3) !important;
-    border-color: #A855F7 !important;
+    min-width: 280px !important;
+    max-width: 340px !important;
+    width: auto !important;
+
+    background: linear-gradient(
+        135deg,
+        rgba(120, 40, 200, 0.28),
+        rgba(80, 20, 140, 0.18)
+    ) !important;
+
+    border: 1px solid rgba(168, 85, 247, 0.45) !important;
+    backdrop-filter: blur(14px);
+
+    border-radius: 14px !important;
+
     color: #E9D5FF !important;
-    transform: scale(1.01);
+
+    font-family: 'Orbitron', monospace !important;
+    font-size: 0.88rem !important;
+    font-weight: 700 !important;
+
+    letter-spacing: 4px !important;
+    text-transform: uppercase !important;
+
+    padding: 1rem 2.2rem !important;
+
+    transition: all 0.3s ease !important;
+
+    box-shadow:
+        0 0 18px rgba(168, 85, 247, 0.12),
+        inset 0 0 12px rgba(255,255,255,0.03);
+
+    position: relative;
+    overflow: hidden;
 }
+
+/* ── Hover Effect ── */
+.stButton > button:hover {
+
+    background: linear-gradient(
+        135deg,
+        rgba(168, 85, 247, 0.38),
+        rgba(120, 40, 200, 0.25)
+    ) !important;
+
+    border-color: rgba(192, 132, 252, 0.85) !important;
+
+    color: #ffffff !important;
+
+    transform: translateY(-2px) scale(1.02);
+
+    box-shadow:
+        0 0 28px rgba(168, 85, 247, 0.35),
+        0 0 55px rgba(120, 40, 200, 0.18);
+}
+
+/* ── Click Effect ── */
 .stButton > button:active {
-    transform: scale(0.99) !important;
+    transform: scale(0.98);
+}
+
+/* ── Optional Glow Line ── */
+.stButton > button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.15),
+        transparent
+    );
+
+    transition: 0.6s;
+}
+
+.stButton > button:hover::before {
+    left: 120%;
 }
 
 /* ── Spinner ── */
