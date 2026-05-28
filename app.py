@@ -19,81 +19,84 @@ st.set_page_config(
 )
 
 # -------------------- CUSTOM CSS --------------------
+# -------------------- CUSTOM CSS --------------------
 st.markdown("""
 <style>
 
 /* Main Background */
 .stApp {
-    background: linear-gradient(135deg, #0f0f0f, #1a001f, #2b0033);
+    background: linear-gradient(135deg, #0a0a0a, #1a0000, #330000);
     color: white;
 }
 
 /* Title */
 h1 {
-    color: #d946ef !important;
+    color: #ff4d4d !important;
     text-align: center;
     font-weight: bold;
 }
 
 /* Subheader */
 h3 {
-    color: #c084fc !important;
+    color: #ff8080 !important;
 }
 
-/* Text Area Label */
+/* Labels */
 label {
     color: #ffffff !important;
     font-size: 18px !important;
     font-weight: 600 !important;
 }
 
-/* Text Area Box */
+/* Text Area */
 textarea {
     background-color: #111111 !important;
     color: #ffffff !important;
-    border: 2px solid #a855f7 !important;
+    border: 2px solid #ff4d4d !important;
     border-radius: 12px !important;
     font-size: 16px !important;
+    padding: 12px !important;
 }
 
-/* Placeholder text */
+/* Placeholder */
 textarea::placeholder {
     color: #cccccc !important;
 }
 
-/* Button Styling */
+/* Button */
 .stButton > button {
-    background: linear-gradient(90deg, #7e22ce, #c026d3);
+    background: linear-gradient(90deg, #990000, #ff1a1a);
     color: white;
     border: none;
     border-radius: 10px;
     padding: 12px 25px;
     font-size: 16px;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
+/* Button Hover */
 .stButton > button:hover {
-    background: linear-gradient(90deg, #9333ea, #e879f9);
+    background: linear-gradient(90deg, #cc0000, #ff4d4d);
     transform: scale(1.03);
 }
 
-/* JSON Output Box */
+/* JSON Box */
 .stJson {
     background-color: #111111 !important;
-    border: 2px solid #9333ea !important;
+    border: 2px solid #ff3333 !important;
     border-radius: 12px !important;
     padding: 10px !important;
 }
 
-/* Warning Message */
+/* Alert Box */
 .stAlert {
     border-radius: 10px;
 }
 
-/* Spinner Text */
+/* Spinner */
 .stSpinner > div {
-    color: #ffffff !important;
+    color: white !important;
 }
 
 </style>
