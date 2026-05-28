@@ -11,19 +11,101 @@ import os
 
 os.environ["MISTRAL_API_KEY"] = st.secrets["MISTRAL_API_KEY"]
 
-# Streamlit Config
+# -------------------- PAGE CONFIG --------------------
 st.set_page_config(
     page_title="Movie JSON Extractor",
-    page_icon="🎬"
+    page_icon="🎬",
+    layout="centered"
 )
 
-# Title
+# -------------------- CUSTOM CSS --------------------
+st.markdown("""
+<style>
+
+/* Main Background */
+.stApp {
+    background: linear-gradient(135deg, #0f0f0f, #1a001f, #2b0033);
+    color: white;
+}
+
+/* Title */
+h1 {
+    color: #d946ef !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Subheader */
+h3 {
+    color: #c084fc !important;
+}
+
+/* Text Area Label */
+label {
+    color: #ffffff !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+}
+
+/* Text Area Box */
+textarea {
+    background-color: #111111 !important;
+    color: #ffffff !important;
+    border: 2px solid #a855f7 !important;
+    border-radius: 12px !important;
+    font-size: 16px !important;
+}
+
+/* Placeholder text */
+textarea::placeholder {
+    color: #cccccc !important;
+}
+
+/* Button Styling */
+.stButton > button {
+    background: linear-gradient(90deg, #7e22ce, #c026d3);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.stButton > button:hover {
+    background: linear-gradient(90deg, #9333ea, #e879f9);
+    transform: scale(1.03);
+}
+
+/* JSON Output Box */
+.stJson {
+    background-color: #111111 !important;
+    border: 2px solid #9333ea !important;
+    border-radius: 12px !important;
+    padding: 10px !important;
+}
+
+/* Warning Message */
+.stAlert {
+    border-radius: 10px;
+}
+
+/* Spinner Text */
+.stSpinner > div {
+    color: #ffffff !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# -------------------- TITLE --------------------
 st.title("🎬 Movie Information Extractor")
 
-# Model
+# -------------------- MODEL --------------------
 model = ChatMistralAI(model="mistral-small-2506")
 
-# Pydantic Schema
+# -------------------- PYDANTIC SCHEMA --------------------
 class Movie(BaseModel):
     title: str
     release_year: Optional[int]
@@ -33,10 +115,10 @@ class Movie(BaseModel):
     rating: Optional[float]
     summary: str
 
-# Parser
+# -------------------- PARSER --------------------
 parser = PydanticOutputParser(pydantic_object=Movie)
 
-# Prompt
+# -------------------- PROMPT --------------------
 prompt = ChatPromptTemplate.from_messages([
     
     ('system', """
@@ -48,14 +130,15 @@ Extract movie information from the paragraph.
     ('human', "{paragraph}")
 ])
 
-# Input Box
+# -------------------- INPUT BOX --------------------
 paragraph = st.text_area(
     "Enter Movie Paragraph",
+    placeholder="Paste movie description here...",
     height=250
 )
 
-# Button
-if st.button("Extract Information"):
+# -------------------- BUTTON --------------------
+if st.button("✨ Extract Information"):
 
     if paragraph.strip() == "":
         st.warning("Please enter a paragraph.")
