@@ -155,7 +155,7 @@ textarea:focus {
 /* ── Main Button ── */
 .stButton > button {
     min-width: 280px !important;
-    max-width: 340px !important;
+    max-width: 770px !important;
     width: auto !important;
 
     background: linear-gradient(
