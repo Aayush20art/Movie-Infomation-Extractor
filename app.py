@@ -144,19 +144,17 @@ textarea:focus {
     box-shadow: none !important;
 }
 
-/* ── Button ── */
-/* ── Button Container ── */
+/* ── Button Container — force full width & center ── */
 .stButton {
-    display: flex !important;
-    justify-content: center !important;
+    display: block !important;
+    width: 100% !important;
     margin-top: 1.5rem !important;
 }
 
-/* ── Main Button ── */
+/* ── Main Button — full width ── */
 .stButton > button {
-    min-width: 280px !important;
-    max-width: 770px !important;
-    width: auto !important;
+    width: 100% !important;
+    display: block !important;
 
     background: linear-gradient(
         135deg,
@@ -203,7 +201,7 @@ textarea:focus {
 
     color: #ffffff !important;
 
-    transform: translateY(-2px) scale(1.02);
+    transform: translateY(-2px) scale(1.01);
 
     box-shadow:
         0 0 28px rgba(168, 85, 247, 0.35),
@@ -212,10 +210,10 @@ textarea:focus {
 
 /* ── Click Effect ── */
 .stButton > button:active {
-    transform: scale(0.98);
+    transform: scale(0.99);
 }
 
-/* ── Optional Glow Line ── */
+/* ── Sweep shine on hover ── */
 .stButton > button::before {
     content: "";
     position: absolute;
@@ -227,7 +225,7 @@ textarea:focus {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255,255,255,0.15),
+        rgba(255,255,255,0.12),
         transparent
     );
 
