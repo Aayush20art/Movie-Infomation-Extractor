@@ -145,8 +145,9 @@ textarea:focus {
 }
 
 /* ── Button ── */
+.stButton { width: 100% !important; }
 .stButton > button {
-    width: 100%;
+    width: 100% !important;
     background: rgba(168, 85, 247, 0.15) !important;
     border: 1px solid rgba(168, 85, 247, 0.6) !important;
     border-radius: 8px !important;
