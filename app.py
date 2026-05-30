@@ -16,349 +16,108 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:ital,wght@0,300;0,400;0,500;1,300&family=Share+Tech+Mono&display=swap');
 
-/* ── Base ── */
+/* ---------- Main App ---------- */
 .stApp {
-    background: #06040F;
-    color: #E8E0FF;
+    background: linear-gradient(135deg, #050505 0%, #120018 50%, #220033 100%);
+    color: white;
 }
 
-/* ── Nebula background ── */
-.stApp::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(ellipse 60% 40% at 80% 20%, rgba(120,40,200,0.18) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 35% at 10% 70%, rgba(60,0,160,0.15) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 50% 90%, rgba(180,60,255,0.10) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-/* ── Typography ── */
-h1, h2, h3 {
-    font-family: 'Orbitron', monospace !important;
-    color: #ffffff !important;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-}
-
-/* ── Blinking icon + title block ── */
-.galaxy-hero {
+/* ---------- Header ---------- */
+h1 {
     text-align: center;
-    padding: 2.5rem 1rem 1.5rem;
-}
-.blink-icon {
-    font-size: 3rem;
-    display: block;
-    margin-bottom: 1rem;
-    animation: blink-fade 1.5s ease-in-out infinite;
-    filter: drop-shadow(0 0 12px #A855F7);
-}
-@keyframes blink-fade {
-    0%, 100% { opacity: 1;    transform: scale(1);    }
-    50%       { opacity: 0.15; transform: scale(0.92); }
-}
-.galaxy-title {
-    font-family: 'Orbitron', monospace;
-    font-size: 2.2rem;
-    font-weight: 900;
-    letter-spacing: 3px;
-    color: #ffffff;
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin: 0;
-}
-.galaxy-subtitle {
-    font-family: 'Orbitron', monospace;
-    font-size: 1rem;
-    font-weight: 400;
-    color: #A855F7;
-    letter-spacing: 8px;
-    margin-top: 6px;
-}
-.galaxy-tagline {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: #9D8FCF;
-    font-style: italic;
-    margin-top: 10px;
-    letter-spacing: 0.5px;
+    color: #d946ef !important;
+    font-size: 3rem !important;
+    font-weight: 800 !important;
 }
 
-/* ── Divider ── */
-.galaxy-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 1rem 0 1.8rem;
-}
-.galaxy-divider::before,
-.galaxy-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(168,85,247,0.5), transparent);
-}
-.divider-dot {
-    width: 6px; height: 6px;
-    background: #A855F7;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #A855F7;
+/* ---------- Subheaders ---------- */
+h3, .stSubheader {
+    color: #c084fc !important;
 }
 
-/* ── Labels ── */
-label, .stTextArea label {
-    font-family: 'Share Tech Mono', monospace !important;
-    font-size: 10px !important;
-    letter-spacing: 3px !important;
-    text-transform: uppercase !important;
-    color: #7C5FBF !important;
-    font-weight: 400 !important;
+/* ---------- Text Area ---------- */
+.stTextArea textarea {
+    background-color: #121212 !important;
+    color: white !important;
+    border: 2px solid #9333ea !important;
+    border-radius: 15px !important;
+    font-size: 16px !important;
+    padding: 15px !important;
 }
 
-/* ── Textarea ── */
-textarea {
-    background: rgba(20, 8, 45, 0.8) !important;
-    border: 1px solid rgba(168, 85, 247, 0.3) !important;
-    border-left: 3px solid #A855F7 !important;
-    color: #E8E0FF !important;
-    font-family: 'Exo 2', sans-serif !important;
-    font-size: 0.97rem !important;
-    font-weight: 300 !important;
-    line-height: 1.8 !important;
-    border-radius: 0 8px 8px 0 !important;
-    caret-color: #A855F7;
-}
-textarea::placeholder {
-    color: #4A3870 !important;
-    font-style: italic;
-}
-textarea:focus {
-    border-color: rgba(168, 85, 247, 0.7) !important;
-    border-left-color: #C084FC !important;
-    background: rgba(30, 12, 60, 0.9) !important;
-    box-shadow: none !important;
+.stTextArea textarea:focus {
+    border: 2px solid #d946ef !important;
+    box-shadow: 0 0 15px rgba(217,70,239,0.6) !important;
 }
 
-/* ── Button Container — force full width & center ── */
-.stButton {
-    display: block !important;
-    width: 100% !important;
-    margin-top: 1.5rem !important;
+/* Placeholder */
+.stTextArea textarea::placeholder {
+    color: #aaaaaa !important;
 }
 
-/* ── Main Button — full width ── */
+/* ---------- Labels ---------- */
+label {
+    color: white !important;
+    font-weight: 600 !important;
+    font-size: 17px !important;
+}
+
+/* ---------- Button ---------- */
 .stButton > button {
-    width: 100% !important;
-    display: block !important;
-
-    background: linear-gradient(
-        135deg,
-        rgba(120, 40, 200, 0.28),
-        rgba(80, 20, 140, 0.18)
-    ) !important;
-
-    border: 1px solid rgba(168, 85, 247, 0.45) !important;
-    backdrop-filter: blur(14px);
-
-    border-radius: 14px !important;
-
-    color: #E9D5FF !important;
-
-    font-family: 'Orbitron', monospace !important;
-    font-size: 0.88rem !important;
-    font-weight: 700 !important;
-
-    letter-spacing: 4px !important;
-    text-transform: uppercase !important;
-
-    padding: 1rem 2.2rem !important;
-
-    transition: all 0.3s ease !important;
-
-    box-shadow:
-        0 0 18px rgba(168, 85, 247, 0.12),
-        inset 0 0 12px rgba(255,255,255,0.03);
-
-    position: relative;
-    overflow: hidden;
-}
-
-/* ── Hover Effect ── */
-.stButton > button:hover {
-
-    background: linear-gradient(
-        135deg,
-        rgba(168, 85, 247, 0.38),
-        rgba(120, 40, 200, 0.25)
-    ) !important;
-
-    border-color: rgba(192, 132, 252, 0.85) !important;
-
-    color: #ffffff !important;
-
-    transform: translateY(-2px) scale(1.01);
-
-    box-shadow:
-        0 0 28px rgba(168, 85, 247, 0.35),
-        0 0 55px rgba(120, 40, 200, 0.18);
-}
-
-/* ── Click Effect ── */
-.stButton > button:active {
-    transform: scale(0.99);
-}
-
-/* ── Sweep shine on hover ── */
-.stButton > button::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 80%;
-    height: 100%;
-
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255,255,255,0.12),
-        transparent
-    );
-
-    transition: 0.6s;
-}
-
-.stButton > button:hover::before {
-    left: 120%;
-}
-
-/* ── Spinner ── */
-.stSpinner > div {
-    border-top-color: #A855F7 !important;
-}
-
-/* ── Warning / Error ── */
-.stAlert {
-    background: rgba(180, 30, 60, 0.15) !important;
-    border-left: 3px solid #E05070 !important;
-    border-radius: 0 8px 8px 0 !important;
-    color: #F4A0B0 !important;
-    font-style: italic;
-}
-
-/* ── Result card ── */
-.result-card {
-    background: rgba(15, 6, 35, 0.85);
-    border: 1px solid rgba(168, 85, 247, 0.25);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-top: 2rem;
-}
-.card-header {
-    background: rgba(80, 20, 140, 0.35);
-    padding: 1.4rem 1.6rem 1.2rem;
-    border-bottom: 1px solid rgba(168, 85, 247, 0.2);
-}
-.movie-name {
-    font-family: 'Orbitron', monospace;
-    font-size: 1.5rem;
+    width: 100%;
+    height: 55px;
+    background: linear-gradient(90deg,#7e22ce,#d946ef);
+    color: white !important;
+    font-size: 18px;
     font-weight: 700;
-    color: #ffffff;
-    letter-spacing: 1px;
-    margin-bottom: 5px;
-}
-.movie-dir {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.88rem;
-    color: #9D8FCF;
-    font-style: italic;
-}
-.movie-dir span { color: #C084FC; font-style: normal; font-weight: 500; }
-
-.card-body { padding: 1.4rem 1.6rem; }
-
-.genre-wrap { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.4rem; }
-.genre-tag {
-    background: rgba(168, 85, 247, 0.15);
-    border: 1px solid rgba(168, 85, 247, 0.35);
-    color: #C084FC;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
 }
 
-.meta-grid { display: flex; gap: 12px; margin-bottom: 1.4rem; flex-wrap: wrap; }
-.meta-box {
-    background: rgba(30, 10, 60, 0.6);
-    border: 1px solid rgba(168, 85, 247, 0.2);
-    border-radius: 8px;
-    padding: 0.75rem 1rem;
-    min-width: 130px;
-}
-.mlbl {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px; letter-spacing: 2px;
-    color: #6B4FA0; text-transform: uppercase;
-    display: block; margin-bottom: 5px;
-}
-.mval { font-family: 'Exo 2', sans-serif; font-size: 1rem; font-weight: 500; color: #E8E0FF; }
-.star-filled { color: #A855F7; text-shadow: 0 0 6px #A855F7; }
-.star-empty  { color: #2D1B50; }
-.rating-num  { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #7C5FBF; margin-left: 6px; }
-
-.cast-lbl {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px; letter-spacing: 2px;
-    color: #6B4FA0; text-transform: uppercase;
-    display: block; margin-bottom: 8px;
-}
-.cast-wrap { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.4rem; }
-.cast-chip {
-    background: rgba(20, 8, 45, 0.8);
-    border: 1px solid rgba(100, 60, 180, 0.35);
-    border-radius: 6px;
-    padding: 5px 12px;
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.88rem;
-    color: #C4B8E8;
+.stButton > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(217,70,239,0.5);
+    background: linear-gradient(90deg,#9333ea,#e879f9);
 }
 
-.synopsis-box {
-    background: rgba(25, 10, 55, 0.7);
-    border: 1px solid rgba(168, 85, 247, 0.15);
-    border-radius: 8px;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-}
-.synopsis-text {
-    font-family: 'Exo 2', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.85;
-    color: #B0A0D8;
-    font-weight: 300;
-    font-style: italic;
+/* ---------- JSON Output ---------- */
+[data-testid="stJson"] {
+    background-color: #111111 !important;
+    border: 2px solid #9333ea !important;
+    border-radius: 15px !important;
+    padding: 15px !important;
 }
 
-/* ── JSON block ── */
-.stJson {
-    background: #030108 !important;
-    border: 1px solid rgba(168, 85, 247, 0.2) !important;
-    border-radius: 8px !important;
-    font-family: 'Share Tech Mono', monospace !important;
-    color: #9D7FEF !important;
+/* ---------- Success / Warning ---------- */
+.stAlert {
+    border-radius: 15px !important;
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #06040F; }
-::-webkit-scrollbar-thumb { background: #4A2870; border-radius: 3px; }
+/* ---------- Spinner ---------- */
+.stSpinner {
+    color: #d946ef !important;
+}
+
+/* ---------- Container Cards ---------- */
+div[data-testid="stVerticalBlock"] > div {
+    border-radius: 15px;
+}
+
+/* ---------- Hide Streamlit Footer ---------- */
+footer {
+    visibility: hidden;
+}
+
+#MainMenu {
+    visibility: hidden;
+}
+
+header {
+    visibility: hidden;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
