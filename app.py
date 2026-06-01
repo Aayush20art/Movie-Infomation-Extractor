@@ -71,6 +71,7 @@ st.markdown("""
     width: 1px;
     height: 3rem;
     background: linear-gradient(to bottom, transparent, var(--gold-mid));
+    animation: drop-line 1.2s ease-out both;
 }
 
 .film-strip {
@@ -87,7 +88,12 @@ st.markdown("""
     border-radius: 2px;
     margin: 0 4px;
     opacity: 0.7;
+    animation: filmhole-blink 4s ease-in-out infinite;
 }
+
+.film-hole:nth-child(2) { animation-delay: 0.4s; }
+.film-hole:nth-child(4) { animation-delay: 0.8s; }
+.film-hole:nth-child(5) { animation-delay: 1.2s; }
 
 .film-frame {
     background: var(--noir-charcoal);
@@ -108,8 +114,8 @@ st.markdown("""
     color: var(--cream);
     line-height: 1;
     letter-spacing: -1px;
-    text-shadow: 0 0 80px rgba(212, 160, 23, 0.15);
     margin: 0;
+    animation: title-glow 4s ease-in-out infinite;
 }
 
 .noir-title span {
@@ -137,12 +143,14 @@ st.markdown("""
     flex: 1;
     height: 1px;
     background: linear-gradient(to right, transparent, var(--gold-deep), transparent);
+    animation: rule-line-pulse 3s ease-in-out infinite;
 }
 
 .noir-rule-diamond {
     width: 6px; height: 6px;
     background: var(--gold-mid);
     transform: rotate(45deg);
+    animation: diamond-spin 6s linear infinite;
 }
 
 /* ── Input Label ── */
@@ -181,41 +189,96 @@ label {
     font-style: italic !important;
 }
 
+/* ── Keyframe Animations ── */
+@keyframes shimmer {
+    0%   { left: -100%; }
+    60%  { left: 100%; }
+    100% { left: 100%; }
+}
+
+@keyframes pulse-border {
+    0%, 100% { border-color: var(--gold-deep); box-shadow: 0 0 0px rgba(212,160,23,0); }
+    50%       { border-color: var(--gold-bright); box-shadow: 0 0 18px rgba(212,160,23,0.18); }
+}
+
+@keyframes diamond-spin {
+    0%   { transform: rotate(45deg) scale(1); }
+    50%  { transform: rotate(225deg) scale(1.4); opacity: 0.5; }
+    100% { transform: rotate(405deg) scale(1); }
+}
+
+@keyframes filmhole-blink {
+    0%, 90%, 100% { opacity: 0.7; }
+    95%            { opacity: 0.15; }
+}
+
+@keyframes title-glow {
+    0%, 100% { text-shadow: 0 0 40px rgba(212,160,23,0.08); }
+    50%       { text-shadow: 0 0 100px rgba(212,160,23,0.22), 0 0 20px rgba(212,160,23,0.10); }
+}
+
+@keyframes rule-line-pulse {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 1; }
+}
+
+@keyframes drop-line {
+    0%   { height: 0; opacity: 0; }
+    100% { height: 3rem; opacity: 1; }
+}
+
+/* ── Button Wrapper — centered ── */
+div[data-testid="stButton"] {
+    display: flex !important;
+    justify-content: center !important;
+}
+
 /* ── Button ── */
 .stButton > button {
-    width: 100%;
-    height: 52px;
+    width: 320px !important;
+    height: 56px !important;
     background: transparent !important;
-    border: 1px solid var(--gold-mid) !important;
+    border: 1px solid var(--gold-deep) !important;
     border-radius: 0 !important;
     color: var(--gold-bright) !important;
     font-family: 'DM Mono', monospace !important;
     font-size: 11px !important;
-    letter-spacing: 5px !important;
+    letter-spacing: 6px !important;
     text-transform: uppercase !important;
     font-weight: 400 !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.35s ease !important;
     position: relative !important;
     overflow: hidden !important;
+    animation: pulse-border 3.5s ease-in-out infinite !important;
 }
 
+/* Infinite shimmer sweep */
 .stButton > button::before {
     content: '';
     position: absolute;
     top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(212,160,23,0.08), transparent);
-    transition: left 0.4s ease;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(240,192,64,0.12), transparent);
+    animation: shimmer 3.5s ease-in-out infinite;
+}
+
+/* Corner accents on button */
+.stButton > button::after {
+    content: '';
+    position: absolute;
+    top: 4px; right: 4px;
+    width: 8px; height: 8px;
+    border-top: 1px solid var(--gold-mid);
+    border-right: 1px solid var(--gold-mid);
+    pointer-events: none;
 }
 
 .stButton > button:hover {
-    background: rgba(212, 160, 23, 0.06) !important;
+    background: rgba(212, 160, 23, 0.07) !important;
     border-color: var(--gold-bright) !important;
-    box-shadow: 0 0 30px rgba(212,160,23,0.1), inset 0 0 30px rgba(212,160,23,0.03) !important;
-}
-
-.stButton > button:hover::before {
-    left: 100%;
+    box-shadow: 0 0 40px rgba(212,160,23,0.15), inset 0 0 40px rgba(212,160,23,0.04) !important;
+    letter-spacing: 8px !important;
+    animation: none !important;
 }
 
 /* ── Spinner ── */
