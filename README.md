@@ -1,5 +1,4 @@
 # 🎬 Movie Information Extractor
-
 A Streamlit web app that extracts structured movie information from unstructured text paragraphs using **Mistral AI** and **LangChain** — and returns clean, validated JSON output.
 
 🔗 **Live Demo**: [movie-infomation-extractor.streamlit.app](https://movie-infomation-extractor-kf7eydfr6v468vymieyvrp.streamlit.app/)
