@@ -1,12 +1,13 @@
 import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_mistralai import ChatMistralAI
+from langchain_groq import ChatGroq
 from pydantic import BaseModel
 from typing import List, Optional
 from langchain_core.output_parsers import PydanticOutputParser
 import os
 
-os.environ["MISTRAL_API_KEY"] = st.secrets["MISTRAL_API_KEY"]
+# Safely load the API key from Streamlit secrets
+os.environ["GROQ_API_KEY"] = st.secrets.get("GROQ_API_KEY", "")
 
 st.set_page_config(
     page_title="CineExtract — Film Intelligence",
@@ -544,7 +545,7 @@ st.markdown("""
 
 
 # ── Model ──
-model = ChatMistralAI(model="mistral-small-2506")
+model = ChatGroq(model="openai/gpt-oss-20b", temperature=2)
 
 
 # ── Pydantic Schema ──
@@ -578,7 +579,9 @@ st.markdown("<div style='margin-top:12px'></div>", unsafe_allow_html=True)
 
 # ── Extract Button ──
 if st.button("◈  DEVELOP THE REEL"):
-    if paragraph.strip() == "":
+    if not os.environ.get("GROQ_API_KEY"):
+        st.warning("GROQ_API_KEY is missing from secrets. Please configure it to develop the reel.")
+    elif paragraph.strip() == "":
         st.warning("No transmission detected. Feed the machine a description.")
     else:
         with st.spinner("Developing the negative…"):
